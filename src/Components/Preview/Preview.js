@@ -12,6 +12,8 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 import CropIcon from '@material-ui/icons/Crop';
 import TimerIcon from '@material-ui/icons/Timer';
 import SendIcon from '@material-ui/icons/Send';
+import { storage,db } from '../../firebase';
+import firebase from 'firebase';
 
 import './Preview.css';
 import { v4 as uuidv4 } from 'uuid';
@@ -36,7 +38,36 @@ function Preview() {
 
     const sendPost = ()=> {
         const id = uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
-        console.log(id);
+        // console.log(id);
+        const uploadTask = storage
+        .ref(`posts/${id}`)
+        .putString(cameraImage, "data_url");
+
+        uploadTask.on('state_changed', null, (error)=> {
+            // Error function
+            console.log(error);
+        }, ()=> {
+            // COMPLETE function
+            storage
+            .ref('posts')
+            .child(id)
+            .getDownloadURL()
+            .then((url) => {
+              // Insert url into an <img> tag to "download"
+              db.collection("post").add({
+                  imageUrl: url,
+                  username: 'hamza',
+                  read: false,
+                  // profilePic
+                  timestamp: firebase.firestore.FieldValue.serverTimestamp() 
+              });
+              history.replace('/chats');
+              console.log(url);
+            })
+            .catch((error) => {
+            console.log(error);
+            })
+        });
     }
 
     return (
