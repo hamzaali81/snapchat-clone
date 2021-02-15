@@ -9,7 +9,7 @@ function chats() {
     return (
         <div className="chats">
             <div className="chats__header">
-                <Avatar />
+                <Avatar className="chats__avatar"/>
                 <div className="chats__search">
                    <SearchIcon />
                    <input type="text" placeholder="Friends"/>
