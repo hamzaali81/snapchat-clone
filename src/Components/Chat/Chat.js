@@ -29,7 +29,10 @@ function Chat( { id ,profilePic,username,timestamp,imageUrl,read }) {
             <Avatar className="chat" src={profilePic} />
             <div className="chat__info">
             <h4>{username}</h4>
-            <p>Tap to view -{" "} <TimeAgo data={new Date(timestamp?.toDate()).toUTCString()}/></p>
+            <p>
+                {
+                !read  &&   "Tap to view -" }{" "} 
+            <TimeAgo data={new Date(timestamp?.toDate()).toUTCString()}/></p>
             </div>
 
             {!read && <StopRoundedIcon className="chat__readIcon"/>}
