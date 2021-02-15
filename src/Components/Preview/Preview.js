@@ -64,9 +64,9 @@ function Preview() {
               console.log(history.replace('/chats'));
               console.log(url);
             })
-            // .catch((error) => {
-            // console.log(error);
-            // })
+            .catch((error) => {
+            console.log(error);
+            })
         });
     }
 

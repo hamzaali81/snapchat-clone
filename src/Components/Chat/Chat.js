@@ -5,19 +5,22 @@ import { selectImage } from '../../features/appSlice';
 import TimeAgo from 'react-timeago'
 import './chat.css';
 import { useDispatch } from 'react-redux';
+import { db } from '../../firebase';
+import { useHistory } from 'react-router-dom';
 
-function Chat( { key ,profilePic,username,timestamp,imageUrl,read }) {
+function Chat( { id ,profilePic,username,timestamp,imageUrl,read }) {
     console.log(profilePic, username, read);
     const dispatch = useDispatch();
+    const history= useHistory();
     console.log(profilePic,username,timestamp);
     const open = ()=> {
         if(!read) {
             dispatch(selectImage(imageUrl));
-            // db.collection('posts').doc(id).set({
-            //     {read: true},
-            //     {merge: true}
-
-            // })
+            db.collection('posts').doc(id).set(
+                {read: true},
+                {merge: true}
+            );
+            history.push('/chats/view');
         }
     }
     

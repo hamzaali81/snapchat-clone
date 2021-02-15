@@ -35,7 +35,7 @@ function Chats() {
                            ({ id, data: { profilePic, username, timestamp, imageUrl, read }
                          }) =>(
                              <Chat 
-                             key={id}
+                             id={id}
                              profilePic={profilePic}
                              username={username}
                              timestamp={timestamp}
