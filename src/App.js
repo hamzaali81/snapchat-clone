@@ -15,10 +15,10 @@ function App() {
           <Router>
             <div className="app__body">
                   <Switch>
-                     <Route exact path="/chats">
+                     <Route path="/chats">
                           <Chats />
                      </Route>
-                     <Route exact path="/preview">
+                     <Route path="/preview">
                           <Preview />
                      </Route>
 

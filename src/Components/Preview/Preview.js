@@ -14,7 +14,6 @@ import TimerIcon from '@material-ui/icons/Timer';
 import SendIcon from '@material-ui/icons/Send';
 import { storage,db } from '../../firebase';
 import firebase from 'firebase';
-
 import './Preview.css';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -62,11 +61,12 @@ function Preview() {
                   timestamp: firebase.firestore.FieldValue.serverTimestamp() 
               });
               history.replace('/chats');
+              console.log(history.replace('/chats'));
               console.log(url);
             })
-            .catch((error) => {
-            console.log(error);
-            })
+            // .catch((error) => {
+            // console.log(error);
+            // })
         });
     }
 
