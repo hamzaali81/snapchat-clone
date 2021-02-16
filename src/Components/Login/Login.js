@@ -1,16 +1,37 @@
 import { Button } from '@material-ui/core';
+import { useDispatch } from "react-redux";
+import { auth, provider } from '../../firebase';
+import { login } from "../../features/appSlice";
 import React from 'react';
 import './login.css';
 
 function Login() {
-    const signIn = ()=> {
 
+    const dispatch = useDispatch();
+
+    const signIn = ()=> {
+  auth.signInWithPopup(provider)
+        .then( (result)=> {
+            dispatch(
+                login({
+                    username: result.user.displayName,
+                    profilePic: result.user.photoURL,
+                    id: result.user.id
+                })
+            )
+    
+        })
+        .catch(function (error) {
+           alert(error.message)
+        });
     }
+
+
     return (
         <div className="login">
             <div className="login__container">
-                <img src="https://pbs.twimg.com/profile_images/1324384358418042880/A-ENfuMC_400x400.jpg" alt="" srcset=""/>
-                <Button variant="outline" onClick={signIn}>Sign in</Button>
+                <img src="https://www.snapchat.com/global/social-lg.jpg" alt="" srcset=""/>
+                <Button variant="outlined" onClick={signIn}>Sign in</Button>
             </div>
         </div>
     )
