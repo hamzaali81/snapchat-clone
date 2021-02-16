@@ -10,6 +10,7 @@ import { useSelector,useDispatch } from "react-redux";
 import Login from './Components/Login/Login';
 import { auth } from "./firebase";
 import { login,logout } from "./features/appSlice";
+
 // console.log(Chats);
 // Route components
 function App() {
@@ -41,8 +42,11 @@ function App() {
             <Login />
           )
           : (
+            <>
+            <img className="app__logo" src="https://www.snapchat.com/global/social-lg.jpg" alt="snapchat-logo"/>
 <div className="app__body">
-          <Switch>
+      <div className="app__bodyBackground">
+      <Switch>
             <Route path="/chats/view">
               <ChatView />
             </Route>
@@ -58,7 +62,9 @@ function App() {
               <WebcamCapture />
             </Route>
           </Switch>
+      </div>
         </div>
+        </>
           )
         }
 

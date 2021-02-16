@@ -7,14 +7,19 @@ import { db,auth } from '../../firebase';
 import Chat from '../Chat/Chat';
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUser } from '../../features/appSlice';
+import { resetCameraImage } from '../../features/cameraSlice';
 import RadioButtonUncheckedRoundedIcon from '@material-ui/icons/RadioButtonUncheckedRounded';
+import { useHistory } from 'react-router-dom';
 
 function Chats() {
     const [posts, setPosts] = useState([]);
     const user = useSelector(selectUser);
-     
+    const history = useHistory();
+    const dispatch = useDispatch();
+    
     const takeSnap = ()=> {
-        
+        dispatch(resetCameraImage());
+        history.push('/')
     }
 
     useEffect(() => {
@@ -31,7 +36,7 @@ function Chats() {
             <div className="chats__header">
                 <Avatar src={user.profilePic} onClick={()=> auth.signOut()}  className="chats__avatar"/>
                 <div className="chats__search">
-                   <SearchIcon />
+                   <SearchIcon className="chats__searchIcon"/>
                    <input type="text" placeholder="Friends"/>
                 </div>
                   <ChatBubbleIcon className="chats__chatIcon"/>

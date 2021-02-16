@@ -16,6 +16,7 @@ import { storage,db } from '../../firebase';
 import firebase from 'firebase';
 import './Preview.css';
 import { v4 as uuidv4 } from 'uuid';
+import { selectUser } from '../../features/appSlice';
 
 
 
@@ -23,7 +24,7 @@ function Preview() {
     const cameraImage  = useSelector(selectCameraImage);
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const user = useSelector(selectUser);
     useHistory(() => {
         if(!cameraImage){
             history.replace("/");
@@ -57,7 +58,7 @@ function Preview() {
                   imageUrl: url,
                   username: 'hamza',
                   read: false,
-                  // profilePic
+                  profilePic: user.profilePic,
                   timestamp: firebase.firestore.FieldValue.serverTimestamp() 
               });
               history.replace('/chats');

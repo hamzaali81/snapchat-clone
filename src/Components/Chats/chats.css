@@ -17,9 +17,20 @@
 
 }
 
+.chats__searchIcon {
+    color: white;
+    font-size: 13px !important;
+}
+.chats__chatIcon {
+    color: white;
+    font-size: 18px !important;
+}
+
 .chats__takePicIcon:hover {
     opacity: 0.8;
 }
+
+
 
 .chats__header {
    display: flex;

@@ -6,3 +6,21 @@
   background-color: #fefc01;
   height: 100vh;
 }
+
+.app__logo{
+  object-position: contain;
+  height: 100px;
+}
+
+.app__body {
+  background: url("./images/pngkey.com-broken-iphone-png-8598072.png") no-repeat center;
+  /* width: 250px; */
+  height: 400px;
+  padding: 74px;
+  background-size: contain;
+}
+
+.app__bodyBackground{
+  background-color: white;
+  height: 400px;
+}
